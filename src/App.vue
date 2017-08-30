@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>{{title}}</h1>
-    <p>{{greeting()}}</p>
+
+    <!-- al haber registrado globalmente el componente "heroes" se puede usar aquí -->
+    <heroes></heroes>
   </div>
 </template>
 
@@ -9,12 +11,7 @@
 export default {
   data () {
     return {
-      title: 'Let´s practice dude!!!!!'
-    }
-  },
-  methods: {
-    greeting: function(){
-      return "Hi there Virgi";
+      title: 'List of Heroes'
     }
   }
 }
