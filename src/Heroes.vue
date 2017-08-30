@@ -1,9 +1,12 @@
 <template>
-  <ul>
-    <li v-for="heroe in heroes">
-      {{heroe}}
-    </li>
-  </ul>
+  <div>
+    <h1>from heroes.vue component</h1>
+    <ul>
+      <li v-for="heroe in heroes">
+        {{heroe}}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -16,6 +19,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  h1 {
+    color:green;
+  }
 </style>
