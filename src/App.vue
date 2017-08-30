@@ -12,7 +12,7 @@ import Footer from './components/Footer.vue'
 
 export default {
   components: {
-    // header can not be used as a component name cause is a reserved word
+    // header or footer can not be used as a component name cause is a reserved word
     'app-header': Header,
     'app-footer': Footer,
   },
