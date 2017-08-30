@@ -1,20 +1,24 @@
 <template>
-  <div>
-    <h1>{{title}}</h1>
-    <p>{{greeting()}}</p>
+  <div> <!-- Component template should contain exactly one root element - so we wrap all components inside a div-->
+    <app-header></app-header>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
+
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+
 export default {
+  components: {
+    // header can not be used as a component name cause is a reserved word
+    'app-header': Header,
+    'app-footer': Footer,
+  },
   data () {
     return {
-      title: 'Let´s practice dude!!!!!'
-    }
-  },
-  methods: {
-    greeting: function(){
-      return "Hi there Virgi";
+
     }
   }
 }

@@ -1,0 +1,30 @@
+<template>
+  <div>
+    <header>
+    <h1>
+      {{title}}
+    </h1>
+    </header>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      title: 'HEADER'
+    }
+  }
+}
+</script>
+
+<style scoped>
+  header {
+    background: lightblue;
+    padding: 10px;
+  }
+  h1 {
+    color: #222;
+    text-align: center;
+  }
+</style>
