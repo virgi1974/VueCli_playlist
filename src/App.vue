@@ -8,7 +8,17 @@
 </template>
 
 <script>
+
+// ----- import and setting a local component
+import Heroes from './Heroes.vue'
+
+
 export default {
+  // component registered localy
+  components: {
+    'heroes': Heroes
+  },
+
   data () {
     return {
       title: 'List of Heroes'
