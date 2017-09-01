@@ -1,5 +1,7 @@
 <template>
   <div id="heroes">
+    <p>this is the data being passed from parent component to child component</p>
+    <small>{{heroes}}</small>
     <ul>
       <li v-for="heroe in heroes" v-on:click="heroe.show = !heroe.show">
         <h2>
@@ -13,16 +15,20 @@
 
 <script>
 export default {
+  // así le pasamos datos de un compoente paren o root a este componente
+  // como usamos --< v-for=heroe in heroes --> será "heroes"
+  props: ['heroes'],
   data () {
     return {
-      heroes: [
-        {name: 'Superman', power: 'strength', show: false},
-        {name: 'Batman', power: 'swift', show: false},
-        {name: 'Spiderman', power: 'sense of humor', show: false},
-        {name: 'Elektra', power: 'martial arts', show: false},
-        {name: 'Daredevil', power: 'sixth sense', show: false},
-        {name: 'Thor', power: 'hummer', show: false}
-      ]
+    // vamos a pasar mediante props la lista de heroes a este compoenente, para que pueda ser reutilizado en otros componentes ej:otras páginas usan una lista algo distinta
+    //   heroes: [
+    //     {name: 'Superman', power: 'strength', show: false},
+    //     {name: 'Batman', power: 'swift', show: false},
+    //     {name: 'Spiderman', power: 'sense of humor', show: false},
+    //     {name: 'Elektra', power: 'martial arts', show: false},
+    //     {name: 'Daredevil', power: 'sixth sense', show: false},
+    //     {name: 'Thor', power: 'hummer', show: false}
+    //   ]
     }
   }
 }

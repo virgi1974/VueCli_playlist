@@ -1,7 +1,9 @@
 <template>
   <div> <!-- Component template should contain exactly one root element - so we wrap all components inside a div-->
     <app-header></app-header>
-    <app-heroes></app-heroes>
+    <p>{{using}}</p>
+    <!-- we need to bind the data to the component using v-bind -->
+    <app-heroes v-bind:heroes="heroes"></app-heroes>
     <app-footer></app-footer>
   </div>
 </template>
@@ -21,12 +23,22 @@ export default {
   },
   data () {
     return {
-
+      heroes: [
+        {name: 'Superman', power: 'strength', show: false},
+        {name: 'Batman', power: 'swift', show: false},
+        {name: 'Spiderman', power: 'sense of humor', show: false},
+        {name: 'Elektra', power: 'martial arts', show: false},
+        {name: 'Daredevil', power: 'sixth sense', show: false},
+        {name: 'Thor', power: 'hummer', show: false}
+      ],
+      using: 'usando props para pasar datos del componente padre al hijo'
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  p {
+    background-color: gray;
+  }
 </style>
