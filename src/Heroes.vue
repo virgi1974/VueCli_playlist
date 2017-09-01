@@ -17,7 +17,16 @@
 export default {
   // así le pasamos datos de un compoente paren o root a este componente
   // como usamos --< v-for=heroe in heroes --> será "heroes"
-  props: ['heroes'],
+  // props: ['heroes'],
+  // ------------------------------
+  //  this other way we could add validation to the passed to a component
+  props: {
+    heroes: {
+      type: Array, // we check the type of data recived
+      required: true, // it must be present
+    }
+  },
+  // ------------------------------
   data () {
     return {
     // vamos a pasar mediante props la lista de heroes a este compoenente, para que pueda ser reutilizado en otros componentes ej:otras páginas usan una lista algo distinta
