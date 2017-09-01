@@ -10,6 +10,7 @@
         <h3 v-if="heroe.show">{{heroe.power}}</h3>
       </li>
     </ul>
+    <button v-on:click="deleteHeroe">Delete a Heroe</button>
   </div>
 </template>
 
@@ -38,6 +39,13 @@ export default {
     //     {name: 'Daredevil', power: 'sixth sense', show: false},
     //     {name: 'Thor', power: 'hummer', show: false}
     //   ]
+    }
+  },
+  methods: {
+    deleteHeroe: function(){
+      // we have access to the data recived as props like this --> this.heroes
+      this.heroes.pop(); // we could take them out one by one
+      // IMP!! because the object is passed as a reference, we are deleting from the original data
     }
   }
 }
