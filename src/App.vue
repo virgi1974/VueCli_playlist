@@ -1,14 +1,10 @@
 <template>
   <div> <!-- Component template should contain exactly one root element - so we wrap all components inside a div-->
-    <app-header></app-header>
+    <app-header v-bind:title="title"></app-header>
     <p>{{using}}</p>
     <!-- we need to bind the data to the component using v-bind -->
     <app-heroes v-bind:heroes="heroes">list-q</app-heroes>
-    <hr>
-    <p>because the heroes list is passed by reference, both app-heroes components share the reference to the same data.
-      This way, the actions in one component data are reflected on the othe one</p>
-    <app-heroes v-bind:heroes="heroes">list-2</app-heroes>
-    <app-footer></app-footer>
+    <app-footer v-bind:title="title"></app-footer>
   </div>
 </template>
 
@@ -35,7 +31,8 @@ export default {
         {name: 'Daredevil', power: 'sixth sense', show: false},
         {name: 'Thor', power: 'hummer', show: false}
       ],
-      using: 'usando props para pasar datos del componente padre al hijo'
+      using: 'usando props para pasar datos del componente padre al hijo',
+      title: 'title ORIGINAL (from parent component passed as propos to chil component)'
     }
   }
 }

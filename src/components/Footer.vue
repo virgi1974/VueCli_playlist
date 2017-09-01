@@ -2,7 +2,7 @@
   <div>
     <footer>
     <p>
-      {{copyright}}
+      {{copyright}} {{title}}
     </p>
     </footer>
   </div>
@@ -10,6 +10,11 @@
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String
+    }
+  },
   data () {
     return {
       copyright: 'Copyright 2017 Virgil'
