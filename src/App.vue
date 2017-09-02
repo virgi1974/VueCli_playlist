@@ -1,6 +1,10 @@
 <template>
   <div> <!-- Component template should contain exactly one root element - so we wrap all components inside a div-->
-    <app-header v-bind:title="title"></app-header>
+
+    <!--  changeTitle is the name of the veent we listen to-->
+    <!--  updateTile is the function we trigger when detect the event has been emitted-->
+    <!-- $event is the value that comes from the child component -->
+    <app-header v-bind:title="title" v-on:changeTitle="updateTile($event)"></app-header>
     <p>{{using}}</p>
     <!-- we need to bind the data to the component using v-bind -->
     <app-heroes v-bind:heroes="heroes">list-q</app-heroes>
@@ -32,7 +36,12 @@ export default {
         {name: 'Thor', power: 'hummer', show: false}
       ],
       using: 'usando props para pasar datos del componente padre al hijo',
-      title: 'title ORIGINAL (from parent component passed as propos to chil component)'
+      title: 'title ORIGINAL (from parent component passed as a prop to a child component)'
+    }
+  },
+  methods: {
+    updateTile: function(updatedTitle){
+      this.title = updatedTitle;
     }
   }
 }
