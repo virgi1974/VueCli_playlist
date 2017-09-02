@@ -1,7 +1,10 @@
 <template>
   <div id="heroes">
-    <p>this is the data being passed from parent component to child component</p>
-    <small>{{heroes}}</small>
+    <button @click="showRawData = !showRawData">show/hide data being passed as prop from parent component</button>
+    <div v-if="showRawData">
+      <p>this is the data being passed from parent component to child component</p>
+      <small>{{heroes}}</small>
+    </div>
     <ul>
       <li v-for="heroe in heroes" v-on:click="heroe.show = !heroe.show">
         <h2>
@@ -39,6 +42,7 @@ export default {
     //     {name: 'Daredevil', power: 'sixth sense', show: false},
     //     {name: 'Thor', power: 'hummer', show: false}
     //   ]
+    showRawData : false
     }
   },
   methods: {

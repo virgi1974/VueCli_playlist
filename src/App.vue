@@ -7,7 +7,7 @@
     <app-header v-bind:title="title" v-on:changeTitle="updateTile($event)"></app-header>
     <p>{{using}}</p>
     <!-- we need to bind the data to the component using v-bind -->
-    <app-heroes v-bind:heroes="heroes">list-q</app-heroes>
+    <app-heroes v-bind:heroes="heroes"></app-heroes>
     <app-footer v-bind:title="title"></app-footer>
   </div>
 </template>

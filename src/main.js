@@ -9,6 +9,9 @@ import App from './App.vue'
 // Vue.component('heroes', Heroes);
 // --------------------------------------------
 
+//  Event Bus (to comunicate among child components)
+// to be used in the components we need to export it
+export const bus = new Vue();
 new Vue({
   el: '#app',
   render: h => h(App)

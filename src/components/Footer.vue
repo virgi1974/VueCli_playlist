@@ -9,6 +9,9 @@
 </template>
 
 <script>
+// we need to import the Event Bus form main.js, where is defined
+import { bus } from "../main"
+
 export default {
   props: {
     title: {
@@ -19,6 +22,11 @@ export default {
     return {
       copyright: 'Copyright 2017 Virgil'
     }
+  },
+  created(){
+    bus.$on('EventBusChangesTitle', (data) => {
+      this.title = data;
+    })
   }
 }
 </script>
