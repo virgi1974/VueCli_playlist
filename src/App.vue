@@ -43,6 +43,28 @@ export default {
     updateTile: function(updatedTitle){
       this.title = updatedTitle;
     }
+  },
+  // life-cycle hooks
+  beforeCreate(){
+    console.log('beforeCreate');
+  },
+  created(){
+  // this is the place for fetching data
+    console.log('created');
+  },
+  beforeMount(){
+    console.log('beforeMount');
+  },
+  mounted(){
+  // this is the place to manipulate the DOM
+    console.log('mounted');
+  },
+  beforeUpdate(){
+    console.log('beforeUpdate');
+  },
+  updated(){
+  // this is the place to manipulate the DOM
+    console.log('updated');
   }
 }
 </script>
