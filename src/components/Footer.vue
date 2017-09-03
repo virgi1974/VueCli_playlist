@@ -1,6 +1,7 @@
 <template>
   <div>
     <footer>
+      <slot></slot>
     <p>
       {{copyright}} {{title}}
     </p>
