@@ -11,6 +11,7 @@
     <app-footer v-bind:title="title">
       <p class="slot" slot="firstSlot">this is html-1 passed as a slot to the app-footer component</p>
       <p class="slot" slot="secondSlot">this is html2 passed as a slot to the app-footer component</p>
+      <p class="slot" slot="dynamicSlot">{{slotContent}}</p>
     </app-footer>
   </div>
 </template>
@@ -39,7 +40,8 @@ export default {
         {name: 'Thor', power: 'hummer', show: false}
       ],
       using: 'usando props para pasar datos del componente padre al hijo',
-      title: 'title ORIGINAL (from parent component passed as a prop to a child component)'
+      title: 'title ORIGINAL (from parent component passed as a prop to a child component)',
+      slotContent : 'this is a slot using dynamic content'
     }
   },
   methods: {

@@ -1,6 +1,7 @@
 <template>
   <div>
     <footer>
+      <slot name="dynamicSlot"></slot>
       <slot name="firstSlot"></slot>
     <p>
       {{copyright}} {{title}}
@@ -22,7 +23,8 @@ export default {
   },
   data () {
     return {
-      copyright: 'Copyright 2017 Virgil'
+      copyright: 'Copyright 2017 Virgil',
+      slotContent: 'sasasasasasasa'
     }
   },
   created(){
