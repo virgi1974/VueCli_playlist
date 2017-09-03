@@ -1,6 +1,9 @@
 <template>
   <div>
     <p> FORM1</p>
+    <br>
+    <label for="">Name</label>
+    <input type="text" placeholder="Name">
   </div>
 </template>
 

@@ -1,6 +1,9 @@
 <template>
   <div>
     <p> FORM2</p>
+    <br>
+    <label for="">Password</label>
+    <input type="password" placeholder="Password">
   </div>
 </template>
 
