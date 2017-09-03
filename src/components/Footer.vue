@@ -1,10 +1,11 @@
 <template>
   <div>
     <footer>
-      <slot></slot>
+      <slot name="firstSlot"></slot>
     <p>
       {{copyright}} {{title}}
     </p>
+      <slot name="secondSlot"></slot>
     </footer>
   </div>
 </template>

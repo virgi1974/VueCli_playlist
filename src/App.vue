@@ -9,8 +9,8 @@
     <!-- we need to bind the data to the component using v-bind -->
     <app-heroes v-bind:heroes="heroes"></app-heroes>
     <app-footer v-bind:title="title">
-      <p>this is html-1 passed as a slot to the app-footer component</p>
-      <p>this is html2 passed as a slot to the app-footer component</p>
+      <p class="slot" slot="firstSlot">this is html-1 passed as a slot to the app-footer component</p>
+      <p class="slot" slot="secondSlot">this is html2 passed as a slot to the app-footer component</p>
     </app-footer>
   </div>
 </template>
@@ -75,5 +75,8 @@ export default {
 <style scoped>
   p {
     background-color: gray;
+  }
+  .slot {
+    color: purple;
   }
 </style>
