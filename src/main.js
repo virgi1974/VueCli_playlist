@@ -11,6 +11,17 @@ Vue.directive('rainbow',{
   }
 })
 
+// custom directive to use different theme, with differnent len
+Vue.directive('theme',{
+  bind(el,binding,vnode){
+    if (binding.value == 'wide') {
+      el.style.maxWidth = "1200px";
+    }else if(binding.value == 'narrow'){
+      el.style.maxWidth = "600px";
+    };
+  }
+})
+
 new Vue({
   el: '#app',
   render: h => h(App)
