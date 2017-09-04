@@ -1,29 +1,38 @@
 <template>
   <div id="add-blog">
     <h2>Add a New Blog Post</h2>
-    <form action="">
+    <form v-if="!submitted">
+
       <label for="">Blog Title</label>
       <input  v-model.lazy="blog.title" type="text" required>
       <br>
       <label for="">Blog Content</label>
       <textarea v-model.lazy="blog.content" name="" id="" cols="30" rows="10"></textarea>
+
+      <div id="checkboxes">
+        <label for="">Ruby</label>
+        <input v-model="blog.categories" type="checkbox" value="Ruby">
+        <label for="">JS</label>
+        <input v-model="blog.categories" type="checkbox" value="JS">
+        <label for="">Nginx</label>
+        <input v-model="blog.categories" type="checkbox" value="Nginx">
+        <label for="">Other</label>
+        <input v-model="blog.categories" type="checkbox" value="Other">
+      </div>
+
+      <label for="">Author</label>
+      <select v-model="blog.author" name="" id="">
+        <option v-for="author in authors">{{author}}</option>
+      </select>
+
+      <button v-on:click.prevent="post">Add Blog</button>
+
     </form>
 
-    <div id="checkboxes">
-      <label for="">Ruby</label>
-      <input v-model="blog.categories" type="checkbox" value="Ruby">
-      <label for="">JS</label>
-      <input v-model="blog.categories" type="checkbox" value="JS">
-      <label for="">Nginx</label>
-      <input v-model="blog.categories" type="checkbox" value="Nginx">
-      <label for="">Other</label>
-      <input v-model="blog.categories" type="checkbox" value="Other">
+    <div v-if="submitted">
+      <h3 id="submitted-msg">Thanks for submitting with us</h3>
     </div>
 
-    <label for="">Author</label>
-    <select v-model="blog.author" name="" id="">
-      <option v-for="author in authors">{{author}}</option>
-    </select>
 
     <div id="preview">
       <h3>Preview Blog</h3>
@@ -57,7 +66,20 @@ export default {
         categories: [],
         author: ''
       },
-      authors: ['Virgilio','Aranzazu','Ariadna','Selene']
+      authors: ['Virgilio','Aranzazu','Ariadna','Selene'],
+      submitted: false
+    }
+  },
+  methods: {
+    post: function(){
+      this.$http.post('https://jsonplaceholder.typicode.com/posts',{
+        title: this.blog.title,
+        body: this.blog.content,
+        userId: 1
+      }).then(function(data){
+        this.submitted = true;
+        // alert(data.status);
+      });
     }
   }
 }
@@ -88,7 +110,7 @@ export default {
     padding: 10px 20px;
     border: 1px dotted #ccc;
     margin: 50px 0;
-    background-color: lightgray;
+    background-color: rgba(231, 234, 231, 0.35);
   }
 
   #preview li {
@@ -111,5 +133,13 @@ export default {
 
   #checkboxes label {
     display: inline-block;
+  }
+
+  #submitted-msg {
+    background-color: lightblue;
+    border: 1px;
+    text-align: center;
+    padding: 5px;
+    color: white;
   }
 </style>
