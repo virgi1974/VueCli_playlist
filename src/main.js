@@ -4,13 +4,15 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
 
-Vue.filter('to-uppercase', function(value){
-  return value.toUpperCase();
-})
+// FILTER REGISTERED GLOBALLY
+// Vue.filter('to-uppercase', function(value){
+//   return value.toUpperCase();
+// })
 
-Vue.filter('short-version', function(value){
-  return value.slice(0,100) + '....';
-})
+// FILTER REGISTERED GLOBALLY
+// Vue.filter('short-version', function(value){
+//   return value.slice(0,100) + '....';
+// })
 
 new Vue({
   el: '#app',
