@@ -1,9 +1,10 @@
 <template>
   <div id="show-blogs">
-    <h1>Kist Blog Articles</h1>
+    <h1>List Blog Articles</h1>
+    <small>example of a component nested inside a parent and using a mixin for the search functionality</small>
     <input v-model="search" type="text" placeholder="search blogs">
     <div v-for="blog in filteredBlogs" class="single-blog">
-      <h2 v-rainbow>{{ blog.title | to-uppercase}}</h2>
+      <h3>{{ blog.title | to-uppercase}}</h3>
     </div>
   </div>
 </template>
@@ -34,18 +35,6 @@ export default {
     // format 1
     'to-uppercase': function(value){ 
       return value.toUpperCase();
-    },
-    // format 2
-    shortVersion(value){
-      return value.slice(0,100) + '....';
-    }
-  },
-  // DIRECTIVES REGISTERED LOCALLY
-  directives: {
-    'rainbow': {
-      bind(el,binding,vnode){
-        el.style.color = "#" + Math.random().toString(16).slice(2,8);
-      }
     }
   },
   mixins: [searchMixin]
@@ -53,15 +42,12 @@ export default {
 </script>
 
 <style scoped>
-  #show-blogs {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
   .single-blog {
+    width: 40%;
+    float: left;
     padding: 20px;
     padding-top: 10px;
-    margin: 10px 0;
+    margin: 10px;
     box-sizing: border-box;
     background-color: rgba(231, 234, 231, 0.35)
   }

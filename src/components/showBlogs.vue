@@ -6,15 +6,21 @@
       <h2 v-rainbow>{{ blog.title | to-uppercase}}</h2>
       <article>{{ blog.body | short-version}}</article>
     </div>
+    <br>
+    <hr>
+    <list-blogs></list-blogs>
   </div>
 </template>
 
 <script>
 
+import listBlogs from './listBlogs.vue';
+
 import searchMixin from '../mixins/searchMixin';
 
 export default {
   components: {
+    'list-blogs': listBlogs
   },
   data () {
     return {
