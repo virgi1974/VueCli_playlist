@@ -1,10 +1,9 @@
 <template>
   <div id="show-blogs">
-    <h1>All Blog Articles</h1>
+    <h1>Kist Blog Articles</h1>
     <input v-model="search" type="text" placeholder="search blogs">
     <div v-for="blog in filteredBlogs" class="single-blog">
       <h2 v-rainbow>{{ blog.title | to-uppercase}}</h2>
-      <article>{{ blog.body | short-version}}</article>
     </div>
   </div>
 </template>
