@@ -7,11 +7,9 @@
       <h2 v-rainbow>{{ blog.title | to-uppercase}}</h2>
     </router-link>
 
-      <article>{{ blog.body | short-version}}</article>
+      <article>{{ blog.content | short-version}}</article>
     </div>
-    <br>
-    <hr>
-    <list-blogs></list-blogs>
+
   </div>
 </template>
 
@@ -34,8 +32,16 @@ export default {
   methods: {
   },
   created(){
-    this.$http.get('https://jsonplaceholder.typicode.com/posts').then(function(data){
-      this.blogs = data.body.slice(0,10);
+    this.$http.get('https://vue-blog-47b5b.firebaseio.com/programming_posts.json').then(function(data){
+      debugger;
+      return data.json();
+    }).then(function(data){
+      var blogsArray = [];
+      for (let key in data) {
+        data[key].id = key;
+        blogsArray.push(data[key]);
+      };
+        this.blogs = blogsArray;
     })
   },
   computed: {

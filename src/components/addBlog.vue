@@ -72,13 +72,8 @@ export default {
   },
   methods: {
     post: function(){
-      this.$http.post('https://jsonplaceholder.typicode.com/posts',{
-        title: this.blog.title,
-        body: this.blog.content,
-        userId: 1
-      }).then(function(data){
+      this.$http.post('https://vue-blog-47b5b.firebaseio.com/programming_posts.json',this.blog).then(function(data){
         this.submitted = true;
-        // alert(data.status);
       });
     }
   }
