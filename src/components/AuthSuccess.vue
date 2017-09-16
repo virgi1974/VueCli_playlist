@@ -16,6 +16,8 @@
   import firebase from 'firebase';
   import firebaseui from 'firebaseui'
   import {config} from '../helpers/firebaseConfig';
+
+  import { bus } from '../main';
   
   export default {
    data(){
@@ -36,12 +38,15 @@
            vm.email = vm.user.email;
            vm.photo = vm.user.photoURL;
            vm.userId = vm.user.uid;
+           // we emit through the bus the state that a user is logged in
+           bus.$emit('userLoggedIn', true);
         }
       });
     },
     methods: {
       logOut() {
         firebase.auth().signOut();
+        bus.$emit('userLoggedIn', false);
       }
     },
   };

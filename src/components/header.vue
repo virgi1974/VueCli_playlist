@@ -1,13 +1,15 @@
 <template>
   <nav>
   <ul>
-    <li><router-link to="/bloglist" exact>Blogs</router-link></li>
-    <li><router-link to="/add" exact>Add a new Blog</router-link></li>
+    <li v-if="user"><router-link to="/bloglist" exact>Blogs</router-link></li>
+    <li v-if="user"><router-link to="/add" exact>Add a new Blog</router-link></li>
   </ul>
   </nav>
 </template>
 
 <script>
+
+import { bus } from '../main';
 
 export default {
   components: {
@@ -24,6 +26,11 @@ export default {
   filters: {
   },
   directives: {
+  },
+  created(){
+    bus.$on('userLoggedIn', (data) => {
+      this.user = data;
+    })
   }
 }
 </script>
