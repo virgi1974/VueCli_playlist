@@ -1,14 +1,13 @@
 <template> 
   <div> 
     <h1>Signup succeeded</h1> 
-    <button @click="logOut">Log out</button>
     <hr> 
     <img :src="photo" style="height: 120px"> <br> 
     <p>{{name}}</p> 
     <p>{{email}}</p> 
-    <p>{{userId}}</p> 
-    <hr> 
-    <pre>{{user}}</pre> 
+    <!-- <p>{{userId}}</p> -->
+    <!-- <hr> -->
+    <!-- <pre>{{user}}</pre> -->
   </div>
 </template>
 
@@ -37,18 +36,14 @@
            vm.name = vm.user.displayName;
            vm.email = vm.user.email;
            vm.photo = vm.user.photoURL;
-           vm.userId = vm.user.uid;
+           // vm.userId = vm.user.uid;
            // we emit through the bus the state that a user is logged in
-           bus.$emit('userLoggedIn', true);
+           bus.$emit('userLoggedIn', user);
         }
       });
     },
     methods: {
-      logOut() {
-        firebase.auth().signOut();
-        bus.$emit('userLoggedIn', false);
-      }
-    },
+    }
   };
 </script>
 
