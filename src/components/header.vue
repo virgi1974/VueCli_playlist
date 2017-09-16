@@ -1,7 +1,7 @@
 <template>
   <nav>
   <ul>
-    <li><router-link to="/" exact>Blogs</router-link></li>
+    <li><router-link to="/bloglist" exact>Blogs</router-link></li>
     <li><router-link to="/add" exact>Add a new Blog</router-link></li>
   </ul>
   </nav>
@@ -14,7 +14,7 @@ export default {
   },
   data () {
     return {
-
+      user: false
     }
   },
   methods: {

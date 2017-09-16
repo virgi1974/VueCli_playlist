@@ -15,3 +15,4 @@ yarn-error.log
 notes.txt
 routes.txt
 firebase.txt
+src/helpers/firebaseConfig.js

@@ -33,7 +33,6 @@ export default {
   },
   created(){
     this.$http.get('https://vue-blog-47b5b.firebaseio.com/programming_posts.json').then(function(data){
-      debugger;
       return data.json();
     }).then(function(data){
       var blogsArray = [];
