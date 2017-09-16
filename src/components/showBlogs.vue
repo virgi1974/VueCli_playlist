@@ -2,12 +2,15 @@
   <div id="show-blogs">
     <h1>All Blog Articles</h1>
     <input v-model="search" type="text" placeholder="search blogs">
+    <span v-if="mode === false"><button @click="toggleMode()">HTML</button></span>
+    <span v-if="mode === true"><button @click="mode = false">RAW</button></span>
     <div v-for="blog in filteredBlogs" class="single-blog">
-    <router-link v-bind:to="'/blog/' + blog.id">
-      <h2 v-rainbow>{{ blog.title | to-uppercase}}</h2>
-    </router-link>
+      <router-link v-bind:to="'/blog/' + blog.id">
+        <h2 v-rainbow>{{ blog.title | to-uppercase}}</h2>
+      </router-link>
 
-      <article>{{ blog.content | short-version}}</article>
+      <article v-if="mode === false">{{ blog.content | short-version}}</article>
+      <div v-if="mode === true" v-html="blog.content"></div>
     </div>
 
   </div>
@@ -26,10 +29,14 @@ export default {
   data () {
     return {
       blogs: [],
-      search: ''
+      search: '',
+      mode: false
     }
   },
   methods: {
+    toggleMode: function(){
+      this.mode = !this.mode;
+    }
   },
   created(){
     this.$http.get('https://vue-blog-47b5b.firebaseio.com/programming_posts.json').then(function(data){
