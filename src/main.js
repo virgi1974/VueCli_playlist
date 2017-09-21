@@ -21,6 +21,9 @@ const router = new VueRouter({
 
 export const bus = new Vue();
 
+import VueMaterial from 'vue-material'
+Vue.use(VueMaterial)
+
 new Vue({
   el: '#app',
   render: h => h(App),
