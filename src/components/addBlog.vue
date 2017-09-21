@@ -3,29 +3,38 @@
     <h2>Add a New Blog Post</h2>
     <form v-if="!submitted">
 
-      <label for="">Blog Title</label>
-      <input  v-model.lazy="blog.title" type="text" required>
+      <md-input-container>
+        <md-input v-model.lazy="blog.title" placeholder="Blog Title"></md-input>
+      </md-input-container>
+
       <br>
-      <label for="">Blog Content</label>
-      <textarea v-model.lazy="blog.content" name="" id="" cols="30" rows="10"></textarea>
+
+      <md-input-container>
+        <md-textarea v-model.lazy="blog.content" name="" id="" cols="30" rows="10" placeholder="The content goes here"></md-textarea>
+      </md-input-container>
 
       <div id="checkboxes">
-        <label for="">Ruby</label>
+        <label for="">Ruby</label><i class="devicon-ruby-plain colored"></i>
         <input v-model="blog.categories" type="checkbox" value="Ruby">
-        <label for="">JS</label>
+        <label for="">JS</label><i class="devicon-nodejs-plain colored"></i>
         <input v-model="blog.categories" type="checkbox" value="JS">
-        <label for="">Nginx</label>
+        <label for="">Nginx</label><i class="devicon-nginx-original colored"></i>
         <input v-model="blog.categories" type="checkbox" value="Nginx">
         <label for="">Other</label>
         <input v-model="blog.categories" type="checkbox" value="Other">
       </div>
 
-      <label for="">Author</label>
-      <select v-model="blog.author" name="" id="">
-        <option v-for="author in authors">{{author}}</option>
-      </select>
+        <md-input-container style="width: 50px;text-align: right;">
+          <md-select name="author" id="author" v-model="blog.author" placeholder="hola tronco" multiple>
+            <md-button class="md-icon-button" md-menu-trigger slot="icon">
+              <i class="material-icons md-48">face</i>
+            </md-button>
+          <md-subheader>Authors</md-subheader>
+            <md-option v-for="author in authors" v-bind:value="author">{{author}}</md-option>
+          </md-select>
+        </md-input-container>
 
-      <button v-on:click.prevent="post">Add Blog</button>
+      <md-button class="md-raised md-primary" v-on:click.prevent="post">Add Blog</md-button>
 
     </form>
 
@@ -52,11 +61,8 @@
 
 <script>
 
-// import Form1 from './components/Form1.vue'
-
 export default {
   components: {
-    // 'app-form1': Form1,
   },
   data () {
     return {
@@ -81,6 +87,7 @@ export default {
 </script>
 
 <style scoped>
+
   #add-blog *{
     box-sizing: border-box;
   }
@@ -136,5 +143,9 @@ export default {
     text-align: center;
     padding: 5px;
     color: white;
+  }
+
+  textarea {
+    background-color: #FAFAFA;
   }
 </style>
