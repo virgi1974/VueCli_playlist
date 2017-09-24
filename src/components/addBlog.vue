@@ -4,13 +4,13 @@
     <form v-if="!submitted">
 
       <md-input-container>
-        <md-input v-model.lazy="blog.title" placeholder="Blog Title"></md-input>
+        <md-input id="blog-title" v-model.lazy="blog.title" placeholder="Blog Title"></md-input>
       </md-input-container>
 
       <br>
 
       <md-input-container>
-        <md-textarea v-model.lazy="blog.content" name="" id="" cols="30" rows="10" placeholder="The content goes here"></md-textarea>
+        <md-textarea id="blog-content" v-model.lazy="blog.content" name="" cols="30" rows="10" placeholder="The content goes here"></md-textarea>
       </md-input-container>
 
       <div id="checkboxes">
@@ -38,7 +38,7 @@
               <i class="material-icons md-48">face</i>
             </md-button>
           <md-subheader>Authors</md-subheader>
-            <md-option v-for="author in authors" v-bind:value="author">{{author}}</md-option>
+            <md-option v-for="author in authors" :key="author" v-bind:value="author">{{author}}</md-option>
           </md-select>
         </md-input-container>
 
@@ -67,6 +67,17 @@
       <p>{{blog.author}}</p>
     </div>
 
+    <!-- alert title-content cançt be empty -->
+    <md-dialog ref="needConten">
+      <md-dialog-title style="background-color: #2196F3;">Error - empty inputs detected</md-dialog-title>
+
+      <md-dialog-content>In order to submit the form you must first fill the {{failedValidation}} of the article</md-dialog-content>
+
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="closeDialog('needConten')">Ok</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+
   </div>
 </template>
 
@@ -90,18 +101,51 @@ export default {
         'Ruby' : 'devicon-ruby-plain colored',
         'JS' : 'devicon-nodejs-plain colored',
         'Nginx' : 'devicon-nginx-plain colored',
-        'Other' : 'devicon-ssh-plain colored'
-      }
+        'Other' : 'devicon-ssh-plain colored',
+      },
+      'failedValidation' : ''
     }
   },
   methods: {
     post: function(){
-      this.$http.post('https://vue-blog-47b5b.firebaseio.com/programming_posts.json',this.blog).then(function(data){
-        this.submitted = true;
-      });
+      const title = (document.getElementById('blog-title').value.trim() === '' ? true : false);
+      const content = (document.getElementById('blog-content').value.trim() === '' ? true : false);
+      const categories = (this.blog.categories.length === 0 ? true : false);
+      const author = (this.blog.author === '' ? true : false)
+
+      if (title || content || categories || author) {
+
+        if (title) {
+          this.failedValidation = 'title';
+        }else if(content){
+          this.failedValidation = 'main content';
+        }else if(categories){
+          this.failedValidation = 'programming categories';
+        }else if(author){
+          this.failedValidation = 'author';
+        };
+
+        this.openDialog('needConten');
+      }else{
+        this.$http.post('https://vue-blog-47b5b.firebaseio.com/programming_posts.json',this.blog).then(function(data){
+          this.submitted = true;
+        });
+      };
     },
     getIcon : function(name){
       return this.icons[name];
+    },
+    openDialog(ref) {
+      this.$refs[ref].open();
+    },
+    closeDialog(ref) {
+      this.$refs[ref].close();
+    },
+    onOpen() {
+      console.log('Opened');
+    },
+    onClose(type) {
+      console.log('Closed', type);
     }
   },
   computed: {
